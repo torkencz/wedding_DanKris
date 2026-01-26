@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-body text-charcoal-900 bg-cream-50;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-terracotta-200 text-charcoal-900;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-5xl mx-auto px-6 md:px-8 lg:px-12;
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-medium text-charcoal-900 mb-6;
+  }
+
+  .section-subtitle {
+    @apply font-accent text-lg md:text-xl text-charcoal-600 italic mb-8;
+  }
+
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-sm border border-cream-200;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 
+           bg-terracotta-600 text-white font-body font-medium text-sm tracking-wide
+           rounded-full transition-all duration-300
+           hover:bg-terracotta-700 hover:shadow-lg hover:shadow-terracotta-200/50
+           focus:outline-none focus:ring-2 focus:ring-terracotta-400 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3
+           bg-transparent text-charcoal-700 font-body font-medium text-sm tracking-wide
+           rounded-full border-2 border-charcoal-200 transition-all duration-300
+           hover:border-terracotta-400 hover:text-terracotta-600
+           focus:outline-none focus:ring-2 focus:ring-terracotta-400 focus:ring-offset-2;
+  }
+
+  .link-underline {
+    @apply relative text-terracotta-600 font-medium transition-colors duration-300
+           after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0
+           after:bg-terracotta-400 after:transition-all after:duration-300
+           hover:text-terracotta-700 hover:after:w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* Decorative patterns */
+.pattern-dots {
+  background-image: radial-gradient(circle, theme('colors.terracotta.200') 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pattern-lines {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    theme('colors.cream.200') 10px,
+    theme('colors.cream.200') 11px
+  );
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.cream.100');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.terracotta.300');
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.terracotta.400');
+}
