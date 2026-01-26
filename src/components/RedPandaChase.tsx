@@ -186,7 +186,6 @@ export default function RedPandaChase({
               style={{ 
                 width: gifSize, 
                 height: 'auto',
-                transform: 'scaleX(-1)' // Flipped on X axis
               }}
               className="object-contain"
             />

@@ -35,6 +35,64 @@ function ExternalLink({ link }: { link: Link }) {
   );
 }
 
+function VenueImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-72 xl:w-80 overflow-hidden rounded-r-2xl">
+      {/* Image with fade effect */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${src})` }}
+      />
+      {/* Gradient overlay for blending into background */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.85) 15%, rgba(255,255,255,0) 40%)'
+        }}
+      />
+      {/* Top and bottom fade */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, transparent 20%, transparent 80%, rgba(255,255,255,0.5) 100%)'
+        }}
+      />
+      <span className="sr-only">{alt}</span>
+    </div>
+  );
+}
+
+function VenueImageWedding({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-72 xl:w-96 overflow-hidden rounded-r-2xl">
+      {/* Image with fade effect */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${src})` }}
+      />
+      {/* Gradient overlay for blending - matches the terracotta gradient bg */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.9) 10%, rgba(255,255,255,0.4) 35%, rgba(255,255,255,0) 50%)'
+        }}
+      />
+      {/* Subtle terracotta tint overlay */}
+      <div 
+        className="absolute inset-0 bg-terracotta-50/20"
+      />
+      {/* Top and bottom fade */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, transparent 15%, transparent 85%, rgba(255,255,255,0.4) 100%)'
+        }}
+      />
+      <span className="sr-only">{alt}</span>
+    </div>
+  );
+}
+
 export default function Schedule() {
   const { schedule } = siteContent;
 
@@ -64,12 +122,15 @@ export default function Schedule() {
         >
           {/* Welcome Event */}
           {schedule.events.map((event, index) => (
-            <motion.div key={index} variants={itemVariants} className="card relative">
-              <div className="absolute -left-3 top-8 w-6 h-6 bg-terracotta-500 rounded-full hidden md:flex items-center justify-center">
+            <motion.div key={index} variants={itemVariants} className="card relative overflow-hidden">
+              <div className="absolute -left-3 top-8 w-6 h-6 bg-terracotta-500 rounded-full hidden md:flex items-center justify-center z-10">
                 <span className="w-2 h-2 bg-white rounded-full" />
               </div>
               
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
+              {/* Venue Photo - Brody House */}
+              <VenueImage src="/brody-house.webp" alt="Brody House venue" />
+              
+              <div className="flex flex-col md:flex-row md:items-start gap-6 relative z-10 lg:pr-64 xl:pr-72">
                 {/* Date/Time column */}
                 <div className="md:w-48 flex-shrink-0">
                   <div className="bg-terracotta-50 rounded-xl p-4 text-center md:text-left">
@@ -114,12 +175,15 @@ export default function Schedule() {
           ))}
 
           {/* Wedding Day */}
-          <motion.div variants={itemVariants} className="card relative bg-gradient-to-br from-white to-terracotta-50/30">
-            <div className="absolute -left-3 top-8 w-6 h-6 bg-terracotta-600 rounded-full hidden md:flex items-center justify-center">
+          <motion.div variants={itemVariants} className="card relative bg-gradient-to-br from-white to-terracotta-50/30 overflow-hidden">
+            <div className="absolute -left-3 top-8 w-6 h-6 bg-terracotta-600 rounded-full hidden md:flex items-center justify-center z-10">
               <span className="w-2 h-2 bg-white rounded-full" />
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-start gap-6">
+            {/* Venue Photo - Haris Park */}
+            <VenueImageWedding src="/haris-park.jpg" alt="Haris Park venue" />
+
+            <div className="flex flex-col md:flex-row md:items-start gap-6 relative z-10 lg:pr-64 xl:pr-80">
               {/* Date column */}
               <div className="md:w-48 flex-shrink-0">
                 <div className="bg-terracotta-100 rounded-xl p-4 text-center md:text-left">
