@@ -9,25 +9,22 @@ export default function Hero() {
       id="welcome"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background with gradient and pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-terracotta-50/30" />
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url(/background.jpg)' }}
+      />
       
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 opacity-20">
-        <svg viewBox="0 0 400 400" className="w-full h-full">
-          <circle cx="350" cy="50" r="200" fill="none" stroke="#e47347" strokeWidth="0.5" />
-          <circle cx="350" cy="50" r="150" fill="none" stroke="#e47347" strokeWidth="0.5" />
-          <circle cx="350" cy="50" r="100" fill="none" stroke="#e47347" strokeWidth="0.5" />
-        </svg>
-      </div>
+      {/* Overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cream-50/85 via-cream-50/70 to-cream-50/90" />
       
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 opacity-15">
-        <svg viewBox="0 0 200 200" className="w-full h-full">
-          <path d="M0 100 Q50 50 100 100 T200 100" fill="none" stroke="#788862" strokeWidth="2" />
-          <path d="M0 120 Q50 70 100 120 T200 120" fill="none" stroke="#788862" strokeWidth="2" />
-          <path d="M0 140 Q50 90 100 140 T200 140" fill="none" stroke="#788862" strokeWidth="2" />
-        </svg>
-      </div>
+      {/* Subtle vignette effect */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(250, 248, 241, 0.6) 100%)'
+        }}
+      />
 
       {/* Content */}
       <div className="relative z-10 section-container text-center py-20 lg:py-32">
@@ -38,11 +35,11 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-3 mb-8"
         >
-          <span className="w-12 h-px bg-terracotta-300" />
+          <span className="w-12 h-px bg-terracotta-400" />
           <span className="font-body text-sm tracking-[0.25em] text-terracotta-600 uppercase">
             {meta.dateRangeLabel}
           </span>
-          <span className="w-12 h-px bg-terracotta-300" />
+          <span className="w-12 h-px bg-terracotta-400" />
         </motion.div>
 
         {/* Main headline */}
@@ -50,7 +47,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-charcoal-900 mb-4 leading-[1.1] text-balance"
+          className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-charcoal-900 mb-4 leading-[1.1] text-balance drop-shadow-sm"
         >
           {hero.headline.split(' & ').map((name, i) => (
             <span key={i}>
@@ -67,7 +64,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="font-accent text-xl md:text-2xl text-charcoal-500 italic mb-12"
+          className="font-accent text-xl md:text-2xl text-charcoal-600 italic mb-12"
         >
           {hero.subhead}
         </motion.p>
@@ -85,12 +82,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-              className="text-center"
+              className="text-center bg-white/40 backdrop-blur-sm rounded-xl p-3"
             >
-              <span className="block font-body text-xs tracking-[0.2em] text-terracotta-500 uppercase mb-2">
+              <span className="block font-body text-xs tracking-[0.2em] text-terracotta-600 uppercase mb-2">
                 {fact.label}
               </span>
-              <span className="block font-display text-sm md:text-base text-charcoal-700">
+              <span className="block font-display text-sm md:text-base text-charcoal-800">
                 {fact.value}
               </span>
             </motion.div>
@@ -112,7 +109,7 @@ export default function Hero() {
               </svg>
             </a>
           )}
-          <a href={links.map.href} className="btn-secondary" target="_blank" rel="noopener noreferrer">
+          <a href={links.map.href} className="btn-secondary bg-white/50 backdrop-blur-sm" target="_blank" rel="noopener noreferrer">
             <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -131,7 +128,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2 text-charcoal-400"
+            className="flex flex-col items-center gap-2 text-charcoal-500"
           >
             <span className="font-body text-xs tracking-widest uppercase">Scroll</span>
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
