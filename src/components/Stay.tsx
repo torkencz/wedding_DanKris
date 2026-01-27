@@ -7,8 +7,20 @@ export default function Stay() {
   const [openCategory, setOpenCategory] = useState<number | null>(0);
 
   return (
-    <section id="stay" className="py-24 md:py-32 bg-cream-50">
-      <div className="section-container">
+    <section id="stay" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: 'url(/budapest-hotels.jpg)' }}
+      />
+      
+      {/* Overlay for readability - matching Travel section style */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90" />
+      
+      {/* Subtle color tint */}
+      <div className="absolute inset-0 bg-cream-50/30" />
+
+      <div className="section-container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +43,7 @@ export default function Stay() {
           {travel.hotels.categories.map((category, index) => (
             <div
               key={index}
-              className="card overflow-hidden p-0"
+              className="card overflow-hidden p-0 bg-white/80 backdrop-blur-sm"
             >
               <button
                 onClick={() => setOpenCategory(openCategory === index ? null : index)}

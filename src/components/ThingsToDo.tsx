@@ -18,12 +18,18 @@ export default function ThingsToDo() {
   const { thingsToDo } = siteContent;
 
   return (
-    <section id="things" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-sage-500 blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-terracotta-500 blur-3xl" />
-      </div>
+    <section id="things" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: 'url(/budapest-baths.jpg)' }}
+      />
+      
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90" />
+      
+      {/* Subtle color tint */}
+      <div className="absolute inset-0 bg-white/20" />
 
       <div className="section-container relative z-10">
         <motion.div
@@ -49,7 +55,7 @@ export default function ThingsToDo() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="card bg-gradient-to-br from-terracotta-50 to-cream-50 border-terracotta-100"
+              className="card bg-gradient-to-br from-terracotta-50/90 to-cream-50/90 border-terracotta-100 backdrop-blur-sm"
             >
               <h3 className="font-display text-xl text-terracotta-700 mb-4">{plan.title}</h3>
               <ul className="space-y-2">
@@ -78,7 +84,7 @@ export default function ThingsToDo() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="card group hover:shadow-md transition-all duration-300"
+              className="card group hover:shadow-md transition-all duration-300 bg-white/80 backdrop-blur-sm"
             >
               <h3 className="font-display text-xl text-charcoal-900 mb-3 group-hover:text-terracotta-600 transition-colors">
                 {section.title}
@@ -119,7 +125,7 @@ export default function ThingsToDo() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="card bg-gradient-to-br from-sage-50 to-cream-50 border-sage-200 max-w-3xl mx-auto"
+          className="card bg-gradient-to-br from-sage-50/90 to-cream-50/90 border-sage-200 max-w-3xl mx-auto backdrop-blur-sm"
         >
           <div className="flex items-start gap-4 mb-4">
             <div className="w-12 h-12 bg-sage-200 rounded-xl flex items-center justify-center flex-shrink-0">

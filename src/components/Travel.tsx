@@ -18,17 +18,18 @@ export default function Travel() {
   const { travel } = siteContent;
 
   return (
-    <section id="travel" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Decorative map-like pattern */}
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none">
-        <svg viewBox="0 0 400 600" className="w-full h-full">
-          <path d="M50 100 Q100 50 150 100 T250 100 T350 100" fill="none" stroke="#1a1a1a" strokeWidth="2" />
-          <path d="M50 200 Q100 150 150 200 T250 200 T350 200" fill="none" stroke="#1a1a1a" strokeWidth="2" />
-          <path d="M50 300 Q100 250 150 300 T250 300 T350 300" fill="none" stroke="#1a1a1a" strokeWidth="2" />
-          <circle cx="200" cy="200" r="30" fill="none" stroke="#1a1a1a" strokeWidth="2" />
-          <circle cx="200" cy="200" r="8" fill="#1a1a1a" />
-        </svg>
-      </div>
+    <section id="travel" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background panorama image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: 'url(/budapest-panorama.jpg)' }}
+      />
+      
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90" />
+      
+      {/* Subtle color tint */}
+      <div className="absolute inset-0 bg-sage-50/30" />
 
       <div className="section-container relative z-10">
         <motion.div
@@ -47,7 +48,7 @@ export default function Travel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="card bg-gradient-to-br from-sage-50 to-sage-100/50 border-sage-200 mb-12"
+          className="card bg-gradient-to-br from-sage-50/90 to-sage-100/80 border-sage-200 mb-12 backdrop-blur-sm"
         >
           <h3 className="font-display text-xl text-sage-800 mb-4 flex items-center gap-2">
             <span className="text-2xl">✈️</span> TL;DR
@@ -70,7 +71,7 @@ export default function Travel() {
           className="grid md:grid-cols-2 gap-8"
         >
           {/* Airport Info */}
-          <motion.div variants={itemVariants} className="card">
+          <motion.div variants={itemVariants} className="card bg-white/80 backdrop-blur-sm">
             <div className="flex items-start gap-4 mb-4">
               <div className="w-12 h-12 bg-terracotta-100 rounded-xl flex items-center justify-center flex-shrink-0">
                 <span className="text-2xl">🛬</span>
@@ -92,7 +93,7 @@ export default function Travel() {
           </motion.div>
 
           {/* Getting Around */}
-          <motion.div variants={itemVariants} className="card">
+          <motion.div variants={itemVariants} className="card bg-white/80 backdrop-blur-sm">
             <div className="flex items-start gap-4 mb-4">
               <div className="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center flex-shrink-0">
                 <span className="text-2xl">🚋</span>
@@ -127,7 +128,7 @@ export default function Travel() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="card text-center group hover:shadow-md transition-shadow duration-300"
+                className="card text-center group hover:shadow-md transition-shadow duration-300 bg-white/80 backdrop-blur-sm"
               >
                 <h4 className="font-display text-lg text-charcoal-900 mb-2 group-hover:text-terracotta-600 transition-colors">
                   {hood.name}
@@ -149,7 +150,7 @@ export default function Travel() {
           transition={{ duration: 0.6 }}
           className="mt-12 text-center"
         >
-          <div className="card inline-block bg-gradient-to-br from-terracotta-50 to-cream-100 border-terracotta-200">
+          <div className="card inline-block bg-gradient-to-br from-terracotta-50/90 to-cream-100/90 border-terracotta-200 backdrop-blur-sm">
             <h3 className="font-display text-xl text-charcoal-900 mb-2">{travel.mapEmbed.title}</h3>
             <p className="font-body text-sm text-charcoal-600 mb-4 max-w-md">{travel.mapEmbed.description}</p>
             <a
