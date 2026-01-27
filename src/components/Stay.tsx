@@ -15,10 +15,10 @@ export default function Stay() {
       />
       
       {/* Overlay for readability - matching Travel section style */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-white/25 to-white/35" />
       
       {/* Subtle color tint */}
-      <div className="absolute inset-0 bg-cream-50/30" />
+      <div className="absolute inset-0 bg-cream-50/20" />
 
       <div className="section-container relative z-10">
         <motion.div

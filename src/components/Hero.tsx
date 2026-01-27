@@ -15,14 +15,14 @@ export default function Hero() {
         style={{ backgroundImage: 'url(/background.jpg)' }}
       />
       
-      {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-cream-50/85 via-cream-50/70 to-cream-50/90" />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/45" />
       
       {/* Subtle vignette effect */}
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(250, 248, 241, 0.6) 100%)'
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.3) 100%)'
         }}
       />
 
@@ -35,11 +35,11 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-3 mb-8"
         >
-          <span className="w-12 h-px bg-terracotta-400" />
-          <span className="font-body text-sm tracking-[0.25em] text-terracotta-600 uppercase">
+          <span className="w-16 h-px bg-white/70" />
+          <span className="font-body text-lg md:text-xl tracking-[0.25em] text-white uppercase" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}>
             {meta.dateRangeLabel}
           </span>
-          <span className="w-12 h-px bg-terracotta-400" />
+          <span className="w-16 h-px bg-white/70" />
         </motion.div>
 
         {/* Main headline */}
@@ -47,14 +47,28 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-charcoal-900 mb-4 leading-[1.1] text-balance drop-shadow-sm"
+          className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium mb-4 leading-[1.1] text-balance"
         >
           {hero.headline.split(' & ').map((name, i) => (
             <span key={i}>
               {i > 0 && (
-                <span className="font-accent text-terracotta-500 italic mx-2 md:mx-4">&</span>
+                <span 
+                  className="font-accent text-terracotta-500 italic mx-2 md:mx-4"
+                  style={{ 
+                    textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3)' 
+                  }}
+                >
+                  &
+                </span>
               )}
-              <span className="inline-block">{name}</span>
+              <span 
+                className="inline-block text-white"
+                style={{ 
+                  textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3)' 
+                }}
+              >
+                {name}
+              </span>
             </span>
           ))}
         </motion.h1>
@@ -64,35 +78,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="font-accent text-xl md:text-2xl text-charcoal-600 italic mb-12"
+          className="font-accent text-2xl md:text-3xl text-white italic mb-12"
+          style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}
         >
           {hero.subhead}
         </motion.p>
-
-        {/* Quick facts grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto mb-14"
-        >
-          {hero.quickFacts.map((fact, index) => (
-            <motion.div
-              key={fact.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-              className="text-center bg-white/40 backdrop-blur-sm rounded-xl p-3"
-            >
-              <span className="block font-body text-xs tracking-[0.2em] text-terracotta-600 uppercase mb-2">
-                {fact.label}
-              </span>
-              <span className="block font-display text-sm md:text-base text-charcoal-800">
-                {fact.value}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
 
         {/* CTA buttons */}
         <motion.div
@@ -109,7 +99,7 @@ export default function Hero() {
               </svg>
             </a>
           )}
-          <a href={links.map.href} className="btn-secondary bg-white/50 backdrop-blur-sm" target="_blank" rel="noopener noreferrer">
+          <a href={links.map.href} className="btn-secondary bg-white shadow-sm" target="_blank" rel="noopener noreferrer">
             <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
