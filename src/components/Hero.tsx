@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { siteContent } from '../content/siteContent';
 
@@ -19,11 +19,75 @@ const hingePhotos = [
   '/hinge/IMG_1616.PNG',
 ];
 
+// Original image dimensions (background.jpg)
+const IMG_WIDTH = 1280;
+const IMG_HEIGHT = 960;
+// Ring position in the original image (as percentage of image dimensions)
+const RING_X_PCT = 0.415; // 41.5% from left in original image
+const RING_Y_PCT = 0.52; // 52% from top in original image
+
+// Calculate where a point on the original image appears when using bg-cover bg-center
+function calculateBgCoverPosition(
+  containerWidth: number,
+  containerHeight: number,
+  imgWidth: number,
+  imgHeight: number,
+  pointXPct: number,
+  pointYPct: number
+) {
+  const containerAspect = containerWidth / containerHeight;
+  const imgAspect = imgWidth / imgHeight;
+
+  let renderedWidth: number, renderedHeight: number;
+  let offsetX = 0, offsetY = 0;
+
+  if (containerAspect > imgAspect) {
+    // Container is wider than image - image width fills container, height is cropped
+    renderedWidth = containerWidth;
+    renderedHeight = containerWidth / imgAspect;
+    offsetY = (renderedHeight - containerHeight) / 2;
+  } else {
+    // Container is taller than image - image height fills container, width is cropped
+    renderedHeight = containerHeight;
+    renderedWidth = containerHeight * imgAspect;
+    offsetX = (renderedWidth - containerWidth) / 2;
+  }
+
+  // Calculate the point's position on the rendered image
+  const pointX = pointXPct * renderedWidth - offsetX;
+  const pointY = pointYPct * renderedHeight - offsetY;
+
+  return { x: pointX, y: pointY };
+}
+
 export default function Hero() {
   const { hero, meta, links } = siteContent;
   const [easterEggState, setEasterEggState] = useState<'hidden' | 'question' | 'gallery'>('hidden');
   const [answer, setAnswer] = useState('');
   const [error, setError] = useState(false);
+  const [ringPos, setRingPos] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const updateRingPosition = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const pos = calculateBgCoverPosition(
+          rect.width,
+          rect.height,
+          IMG_WIDTH,
+          IMG_HEIGHT,
+          RING_X_PCT,
+          RING_Y_PCT
+        );
+        setRingPos(pos);
+      }
+    };
+
+    updateRingPosition();
+    window.addEventListener('resize', updateRingPosition);
+    return () => window.removeEventListener('resize', updateRingPosition);
+  }, []);
 
   const handleRingClick = () => {
     setEasterEggState('question');
@@ -50,6 +114,7 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="welcome"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
@@ -75,8 +140,8 @@ export default function Hero() {
         onClick={handleRingClick}
         className="absolute z-20 w-4 h-4 rounded-full cursor-pointer focus:outline-none bg-red-500/50 border-2 border-red-600"
         style={{ 
-          left: 'calc(38% - 1px)', 
-          top: '52%',
+          left: `${ringPos.x}px`, 
+          top: `${ringPos.y}px`,
           transform: 'translate(-50%, -50%)'
         }}
         aria-hidden="true"
