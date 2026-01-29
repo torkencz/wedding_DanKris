@@ -73,10 +73,10 @@ export default function Hero() {
       {/* Secret ring easter egg - temporarily visible for positioning */}
       <button
         onClick={handleRingClick}
-        className="absolute z-20 w-8 h-8 rounded-full cursor-pointer focus:outline-none bg-red-500/50 border-2 border-red-600"
+        className="absolute z-20 w-4 h-4 rounded-full cursor-pointer focus:outline-none bg-red-500/50 border-2 border-red-600"
         style={{ 
-          left: '40%', 
-          top: '58%',
+          left: 'calc(38% - 1px)', 
+          top: '52%',
           transform: 'translate(-50%, -50%)'
         }}
         aria-hidden="true"
