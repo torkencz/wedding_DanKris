@@ -234,7 +234,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="font-accent text-2xl md:text-3xl text-white italic mb-12"
+          className="font-accent text-2xl md:text-3xl text-white italic mb-12 mt-[10vh]"
           style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}
         >
           {hero.subhead}
